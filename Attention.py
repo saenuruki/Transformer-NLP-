@@ -1,8 +1,11 @@
 import tensorflow as tf
 
 '''
-Google 公式の Transformer の Attention を tf.keras ベースとして実装しなおしたモデルです。
-c.f. https://github.com/tensorflow/models/blob/master/official/transformer/model/attention_layer.py
+Multi-head AttentionはこれまでのAttentionを並列に並べたもの（それぞれのAttentionをHeadと呼ぶ）
+論文では一つの大きなAttentionを行うよりも、小さな複数のHeadに分けてAttentionを行う方が性能が上がったと記載がある
+複数並列とはいえ仕組みは単純、query / key / valueをheadの数分分割してAttentionで計算して、最後にconcatするだけ
+RNNにおけるLSTM / GRUセルのように、AttentionにおけるMulti-head Attentionとしてモデルの基本単位となる。
+
 '''
 
 
